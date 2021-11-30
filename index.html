@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="okaidia.css" />
+  <title>Guía Mongodb | CRUD</title>
+</head>
+<body>
+
+  <div class="container">
+    <div class="menu">
+      <h3 class="txt-menu">Guía Completa Mongodb: CRUD</h3>
+      <button class="items" onclick="openCity('mongodb', this, 'orange')" id="defaultOpen">Qué es Mongodb?</button>
+      <button class="items" onclick="openCity('uso', this, 'orange')">Uso Básico</button>
+      <button class="items" onclick="openCity('cuenta', this, 'orange')">Creación de la cuenta</button>
+      <button class="items" onclick="openCity('configurar', this, 'orange')">Configuración de Mongo</button>
+      <button class="items" onclick="openCity('conexion', this, 'orange')">Conectando con Mongo</button>
+      <button class="items" onclick="openCity('modelos', this, 'orange')">Modelos</button>
+      <button class="items" onclick="openCity('guardar', this, 'orange')">Guardar</button>
+      <button class="items" onclick="openCity('obtener', this, 'orange')">Obtener</button>
+      <button class="items" onclick="openCity('datoid', this, 'orange')">Obtener por id</button>
+      <button class="items" onclick="openCity('actualizar', this, 'orange')">Actualizar</button>
+      <button class="items" onclick="openCity('eliminar', this, 'orange')">Elimibar</button>
+    </div>
+    <div class="content">
+      <div id="mongodb" class="tabcontent">
+        <h3>Qué es mongodb?</h3>
+        <p>
+          MongoDB (del inglés humongous, "enorme") es un sistema de base de datos NoSQL orientado a documentos de código abierto y escrito en C++, que en lugar de guardar los datos en tablas lo hace en estructuras de datos BSON (similar a JSON) con un esquema dinámico. Al ser un proyecto de código abierto, sus binarios están disponibles para los sistemas operativos Windows, GNU/Linux, OS X y Solaris y es usado en múltiples proyectos o implementaciones en empresas como MTV Network, Craigslist, BCI o Foursquare.
+        </p>
+
+        <p>
+          Si no conoces MongoDB, al principio puede que te sientas un poco perdido. Al no tener tablas ni nada que se parezca a SQL como referencia, tendremos que estudiar un poco su filosofía y características para entender cómo manejar los datos. Aun así, MongoDB es una seria candidata para almacenar los datos de nuestras aplicaciones.
+        </p>
+        <button class="items" onclick="openCity('uso', this, 'orange')">Siguiente</button>
+      </div>
+      <div id="uso" class="tabcontent">
+        <h3>Uso básico</h3>
+
+        <p>
+          Lo primero que necesitamos es una cuenta en mongodb, mucho mas especifico en la parte de mongodb atlas.
+        </p>
+        <p>
+          Sabías que, existen dos formas que se puede usar mongodb; una de ellas es instalándola en la maquina o usarla en la nube. Para empezar esta muy bien usarla en la nube.
+        </p>
+        <p>
+          También lo que necesitamos es una herramienta, esta se llama mongoose, y es un modulo que nos ayuda mucho simplificando código y es mucho más ordenado
+        </p>
+        <p>
+          Por lo cual aqui te dejo <a href="https://account.mongodb.com/account#/atlas/register/accountProfile">mongodb atlas</a> para que crees una cuenta, ya que lo necesitaras. Y <a href="https://www.npmjs.com/package/mongoose">mongoose</a> la cual vamos a necesitar.
+        </p>
+
+        <div class="info">
+          <strong>Info.</strong>
+          <p>
+            Aqui les aclaró una cosa: esta guia de mysql está hecha para que se use en entornos donde su web o su programa estén funcionando con nodejs.
+          </p>
+          <p>
+            Si usted esta haciendo otras cosas que no dean con nodejs debe buscar o solucionar como mejorarlo
+          </p>
+        </div>
+
+        <button class="items" onclick="openCity('mongodb', this, 'orange')">Atras</button>
+        <button class="items" onclick="openCity('cuenta', this, 'orange')">Siguiente</button>
+      </div>
+      <div id="cuenta" class="tabcontent">
+        <h3>Creación de una Cuenta</h3>
+        <p>
+          Entramos al link <a href="https://account.mongodb.com/account#/atlas/register/accountProfile"> mongodb atlas</a> ponemos nuestros datos y tendremos algo como esto
+        </p>
+        <img class="img-mongo" src="img/img1.png" alt="">
+        <p>
+          luego le damos en FREE y dejamos todo por defecto
+        </p>
+        <img class="img-mongo" src="img/img2.png" alt="">
+        <p>
+          Y por último le damos en a botón de Guardar o al botón verde
+        </p>
+        <img class="img-mongo" src="img/img3.png" alt="">
+        <p>
+          Ok, si has llegado hasta aqui, ya tenemos una cuenta de mongodb atlas, ahora tenemos que configurarla para poder usarla
+        </p>
+        <button class="items" onclick="openCity('uso', this, 'orange')">Atras</button>
+        <button class="items" onclick="openCity('configurar', this, 'orange')">Siguiente</button>
+      </div>
+      <div id="configurar" class="tabcontent">
+
+        <h3>Configuración de mongodb Atlas</h3>
+        <p>
+          Te recuerdo que antes ya debías de haberte registrado, si no lo has hecho <a href="https://account.mongodb.com/account/login">registrate</a> solo sigue los pasos que te pide, después dale seguir y deja todo por defecto.
+        </p>
+        <p>
+          Una vez ya hecho nos vamos en la parte de la izquierda y buscamos en el apartado de seguridad.
+        </p>
+        <img class="img-mongo" src="img/img4.png" alt="">
+        <p>
+          y nos vamos a la primera opción Database Access y damos en ADD NEW USER
+        </p>
+        <img class="img-mongo" src="img/img5.png" alt="">
+        <p>
+          En esta parte creamos un usuario que podrá usar la base de datos, apunta el nombre y la contraseña, ya que lo usaremos más adelante.
+        </p>
+        <p>
+          Ahora nos vamos en la parte de Network Access
+        </p>
+        <img class="img-mongo" src="img/img6.gif" alt="">
+        <p>
+          En esta parte colocaremos la IP de la máquina donde la usaremos, esto para fortalecer la seguridad y no cualquiera IP pueda conectarse, todo esto es opcional. Si solo lo usaras tú y nadie tiene acceso pon una IP global 0.0.0.0/0
+        </p>
+        <p>
+          Ahora que tenemos todo configurado, tenemos que conectarnos a la base de datos.
+        </p>
+
+        <button class="items" onclick="openCity('cuenta', this, 'orange')">Atras</button>
+        <button class="items" onclick="openCity('conexion', this, 'orange')">Siguiente</button>
+      </div>
+      <div id="conexion" class="tabcontent">
+
+        <h3>Conexión a la base de datos</h3>
+        <p>
+          Ahora que ya configuramos mongo atlas, hay que conectarnos, lo primero que tenemos que hacer es ir a la pantalla de inicio
+        </p>
+        <p>
+          A continuación,  te invito a que veas el gif ya que explicarte se hace algo complicado
+        </p>
+
+        <img class="img-mongo" src="img/img7.gif" alt="">
+
+        <p>
+          Nos vamos a nuestro proyecto, y creamos un nuevo archivo llamado db.js y colocaremos dentro lo siguiente.
+        </p>
+        <p>
+          En tu proyecto vamos a crear un archivo llamado db.js y vamos a colocar lo siguiente
+        </p>
+        <pre><code class="language-javascript">
+          const mongoose = require('mongoose')
+
+          let url = ' URL QUE COPIASTE '
+
+          await mongoose.connect(url, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useFindAndModify: false,
+          useCreateIndex: true
+          }, () => {
+          console.lo("Base de datos conectado")
+          });
+        </code></pre>
+        <p>
+            En la parte de la url, colocaras la uri, algo como esta...
+        </p>
+        <pre><code class="language-javascript">
+          mongodb+srv://fomundi:contrasena@cluster0.jcaul.azure.mongodb.net/bots
+        </code></pre>
+        <p>
+          Importante, donde diceusername, password colocaras los datos del usuario que creasteis anteriormente. Y al final donde dice name colocaras el nombre de la db, recuerda pegar la tuya y remplazar correctamente los datos para no tener un error
+          </p>
+          <p>
+            Ahora pediras ese archivo, existen varias formas, pero yo lo he echo de esta manera.
+        </p>
+        <pre><code class="language-javascript">
+          require("./db); //debes de ponerlo en tu archivo principal
+        </code></pre>
+
+        <button class="items" onclick="openCity('configurar', this, 'orange')">Atras</button>
+        <button class="items" onclick="openCity('modelos', this, 'orange')">Siguiente</button>
+
+      </div>
+      <div id="modelos" class="tabcontent">
+        
+        <h3>Modelos</h3>
+        <p>
+          Para hacer esto de manera practica, yo estaré haciendo blog, y guardare en la base todos los post que cree.
+        </p>
+        <p>
+          Primero tenemos que crear una estructura de lo que guardaremos en la db (base de datos), para hacerlo creamos una schema que la estructura y los datos que guardaremos también lo conocen como models.
+          </p>
+          <p>
+            Creare una carpeta llamada models creare un archivo llamado Post.js ahi creare mi schema en ella escribimos lo siguiente.
+        </p>
+        <pre><code class="language-javascript">
+          const mongoose = require('mongoose') 
+          
+          const Schema = mongoose.Schema; 
+          const BlogPost = new Schema({   autor: String,
+            titulo: String, 
+            contenido: String,
+            fecha: Date 
+        });
+        </code></pre>
+        <p>
+          Aqui estoy le estoy diciendo que guardaré el autor, que será un texto, de igual manera el título, el contenido, también guardaré una fecha y se representa como date
+        </p>
+        <p>
+          Todos los datos tiene un nombre, por ejemplo el texto se le conoce como un String, un número se llama Number, y ahí por cada tipo de datos. Todo eso se explica en la documentación.
+        </p>
+        <p>
+          Ahora hay que exportarlo, esto se hace para poder el contenido del archivo donde queramos sin tener que copiar y pegar el mismo una y otra vez, pero lo aremos de esta manera
+        </p>
+        <pre><code class="language-javascript">
+          module.exports = mongoose.model('Post', BlogPost );
+        </code></pre>
+        <p>
+          Donde Post será el nombre y BlogPost la estructura que hemos definido.
+        </p>
+        
+        <button class="items" onclick="openCity('conexion', this, 'orange')">Atras</button>
+        <button class="items" onclick="openCity('guardar', this, 'orange')">Siguiente</button>
+      </div>
+      <div id="guardar" class="tabcontent">
+        
+        <h3>Guardando datos en mongodb</h3>
+        <p>
+          Ahora que sabemos que guardaremos y tenemos una estructura, ya podremos guarda datos.
+        </p>
+        <p>
+          Ahora lo importante siempre que vamos a guardar, pedir, editar o eliminar datos en la base de datos, tenemos que pedir el archivo o schema que vamos a estar usando.
+        </p>
+        <pre><code class="language-javascript">
+          const Post = require("./models/Post.js")
+        </code></pre>
+        <p>
+          En este caso yo estare trabajando con los post, a si que pido mi schema y ahora la puedo usar.
+        </p>
+        <p>
+          Para este ejemplo le estoy colocando los datos de manera manual, para que entiendas por que si pongo las variables reales talvez te pierdas. pero supongamos que ya colocasteis algunos args o un body
+        </p>
+        <pre><code class="language-javascript">
+          let post = new Post({
+            autor: "Kamerr Ezz",
+            titulo: "Como usar Mongodb", 
+            contenido: "Mi primer Blog", 
+            fecha: new Date() 
+          })
+        </code></pre>
+        <p>
+          Ahora para guardar los datos colocamos este callback.
+        </p>
+        <pre><code class="language-javascript">
+          post.save((error, post) => {
+            if(error) return console.log(error)
+    
+            console.log(post)
+          
+          })
+        </code></pre>
+        <p>
+          Aqui obtenemos dos valores, el error y los datos guardados. No olvides muy impórtate validar los errores.
+          </p>
+          <p>
+            Mostraremos los datos con nuestra funciona magica: el console.log, que nos mostrará todos los datos.
+        </p>
+        <pre><code class="language-javascript">
+          {
+            _id: "1031k2l3912n3lg2",
+            autor: "Fomundi",
+            titulo: "Como usar Mongodb",
+            contenido: "Para usar mongodb...",
+            fecha: "Thu Nov 11 2021 9:00:00 "
+          }
+        </code></pre>
+        <p>
+          Esta será lo que veremos en la consola cuando se guarden los datos. algo que tienes que recordar aqui es saber bien que datos guardaras. Y la _id que es una forma de identificación en la base de datos.
+          </p>
+          <p>
+            Recuerda la _id ya que lo usaremos para poder obtener lo que hemos guardado en la base de datos.
+        </p>
+        
+        <button class="items" onclick="openCity('modelos', this, 'orange')">Atras</button>
+        <button class="items" onclick="openCity('obtener', this, 'orange')">Siguiente</button>
+      </div>
+      <div id="obtener" class="tabcontent">
+        
+        <h3>Obtención de los datos</h3>
+        <p>
+          Existen varias formas de poder obtener o ver los datos, la cual te mostrare dos formas de hacerlo.
+        </p>
+        <p>
+          Estas dos son las mas comunes, existen otras formas pero estas si o si las usaras todo el tiempo
+        </p>
+        <p>
+          Hay que pedir como siempre el archivo de nuestro schema, ya con ella saldrán las siguientes funciones
+        </p>
+        <pre><code class="language-javascript">
+          const Post = require('./models/Pots.js")
+        </code></pre>
+        <h2>Ver todos los datos</h2>
+        <pre><code class="language-javascript">
+          Post.find((error, datos) => {
+            if(error) return console.log(error)
+    
+            console.log(datos)
+          }
+        </code></pre>
+        <p>
+          A qui nos mostrar todos los datos guardados en un array (lista) si no sabes que es eso entra aqui <a href="https://es.javascript.info/array">https://es.javascript.info/array</a>
+        </p>
+        <h2>Buscar un dato</h2>
+        <p>
+          si queremos buscar un dato en especifico o una cierta información con datos similares usamos lo siguiente:
+        </p>
+        <pre><code class="language-javascript">
+          Post.findOne({titulo: "mongodb"}, (error, datos) => { 
+            if(error) return console.log(error) 
+            console.log(datos) 
+          })
+        </code></pre>
+        <p>
+          Aqui me dará todos los datos que tengan que ver con mongodb o si existe uno en especifico me la dará de igual manera.
+          </p>
+          <p>
+            Esto te ayuda a buscar varios datos o uno de manera manual
+        </p>
+        
+        <button class="items" onclick="openCity('guardar', this, 'orange')">Atras</button>
+        <button class="items" onclick="openCity('datoid', this, 'orange')">Siguiente</button>
+      </div>
+      <div id="datoid" class="tabcontent">
+        
+        <h3>Buscar un dato por ID</h3>
+        <p>
+          Cuando nosotros guardamos datos en mongodb, automáticamente nos genera una id, esa id un identificador, ya que podemos tener datos con el mismo, y para diferenciarlos se usa una id, solo que mongodb la guarda de esta menera _id y si te acuerda te dije que no la olvidaras.
+        </p>
+        <p>
+          Esa _id es la que colocaremos:
+        </p>
+        <pre><code class="language-javascript">
+          Post.findById("abr25", (error, datos) => { 
+            if(error) return console.log(error) 
+            
+            console.log(datos) 
+          })
+        </code></pre>
+        <div class="info">
+          <p>
+          Estos son los métodos mas comunes para obtener datos, ahora te enseñare a como actualizar los datos.
+          </p>
+          <p>
+          lo que importa es saber cual usar, ya que cada uno tiene su propio uso, pero si sabes un poco mas de conocimientos de los datos, podrás hacer lo que quieras.
+          </p>
+          <p>
+          Recuerda que esas funciones solo funcionan con el modelo, a si que no te olvides de pedirlo como yo lo he echo.
+          </p>
+        </div>
+        
+        <button class="items" onclick="openCity('obtener', this, 'orange')">Atras</button>
+        <button class="items" onclick="openCity('actualizar', this, 'orange')">Siguiente</button>
+      </div>
+      <div id="actualizar" class="tabcontent">
+        
+        <h3>Actualizar Datos</h3>
+        <p>
+          como ya dije anteriormente, siempre necesitamos requerir el modelo que hemos creado, en este caso y seguirá siendo el Post.js
+        </p>
+        <pre><code class="language-javascript">
+          const modelo = require('./model/Post.js')
+        </code></pre>
+        <p>
+          La ruta donde se encuentra el archivo dependerá de donde lo has creado.
+        </p>
+        <p>
+          Ahora para actualizar los datos, te enseñaré una función, que ara el proceso de buscar y a la vez actualizar.
+        </p>
+        <pre><code class="language-javascript">
+          modelo.updateOne(
+            { titulo: 'Como usar Mongodb' },
+            { contenido: 'Para usar mongodb...' }, 
+            (error)=> {
+              if(error) {
+                console.log(error)
+              }
+            });
+        </code></pre>
+        <p>
+          Como en las anteriores funciones, esta sale con el modelo, en este caso es sobre un post.
+          </p>
+          <p>
+            El primer objetó es el dato a buscar, en este caso estoy buscando por el título como usar mongodb y actualizaré el contenido.
+            </p>
+            <p>
+              Aquí podemos buscar cualquier dato, asta el _id directamente, cada vez que podamos o mejor dicho, siempre hay que buscar por id
+        </p>
+        
+        <button class="items" onclick="openCity('datoid', this, 'orange')">Atras</button>
+        <button class="items" onclick="openCity('eliminar', this, 'orange')">Siguiente</button>
+      </div>
+      <div id="eliminar" class="tabcontent">
+        
+        <h3>Eliminar Datos</h3>
+        <p>
+          Ahora, para terminar nuestro CRUD (la forma a la que llamamos el crear, leer, actualizar y eliminar) necesitamos saber como eliminar datos, a qui es importante, ya que eliminar es eliminar, no quitar un ítem o una información.
+        </p>
+        <p>
+          Como siempre, vamos a pedir el modelo, ya que de a qui sale las funciones.
+        </p>
+        <pre><code class="language-javascript">
+          const modelo = require('./model/Post.js')
+        </code></pre>
+        <p>
+          Aqui existe algo llamado remove, pero sería mejor usar delete, como siempre dependerá mucho de tus necesidades, pero a qui el comodín será el delete.
+        </p>
+        <pre><code class="language-javascript">
+          modelo.findOneAndDelete(
+            {_id: "121f13g23g23f23" }
+            ,(err, docs) => { 
+              if (err){ 
+                console.log(err) 
+              } 
+              else{ 
+                console.log("eliminado"); 
+              } 
+            }); 
+        </code></pre>
+        <p>
+          Como siempre el primer opción es el dato que se buscara y se eliminara, en este caso estoy usando la ID que nos genera mongodb automáticamente. Pero nosotros podemos buscar cualquier otro dato.
+        </p>
+        
+        <button class="items" onclick="openCity('mongodb', this, 'orange')">Inicio</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+  <script src="okaidia.js"></script>
+</body>
+</html>
+<!--
+  <pre><code class="language-javascript">
+      (async () => {
+        conn = await require("./database.js");
+      })();
+    </code></pre>
+-->
