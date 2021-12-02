@@ -45,7 +45,7 @@ body {
   }
   .container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
   }
   .img-mongo {
     width: 100%;
